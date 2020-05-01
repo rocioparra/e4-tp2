@@ -1,5 +1,5 @@
-% !Tex root = e4_tp1_ej1
-\documentclass[e4_tp1_main.tex]{subfiles}
+% !TeX root = e4-tp2-ej1
+\documentclass[e4-tp2-main.tex]{subfiles}
 
 \begin{document}
 
@@ -7,6 +7,65 @@
 \section{Modulaci\'on PWM y realimentaci\'on}
 
 
+\subsection{Amplificador de error}
 
+\subsubsection{Valores de $R_2$ y $R_3$}
+Se pide que la tensi\'on de salida sea $V_{O}=25$V, con lo cual para esta condici\'on tiene que cumplirse $V_{FB}=V_{REF}$. Considerando que para continua, $V_{FB}$ es un divisor de tensi\'on de $V_{O}$, obtiene entonces:
+
+\begin{equation}
+	V_{FB} = V_{REF} = V_{O}\cdot \frac{R_3}{R_2+R_3}
+\end{equation}
+
+Despejando para $R_2$:
+
+\begin{equation}
+	R_2 = R_3 \cdot \left(1+ \frac{V_O}{V_{REF}}\right)
+	= R_3 \cdot \left(1+ \frac{25\si{\V}}{2.5\si{\V}}\right)
+	= 9R_3
+\end{equation}
+
+Dejando $R_3=10\si\kohm$, se obtiene $R_2=90\si\kohm$ (si se quisiese armar el circuito, se podr\'ian poner una resistencia de 68$\si\kohm$ en serie con una de 22$\si\kohm$ sin afectar la precisi\'on). 
+
+
+\subsubsection{Transferencia para peque\~nas variaciones de $v_o$}
+
+Para la transferencia de peque\~nas se\~nales, podemos pasivar $V_{REF}$ porque no afectara al cambio que se produzca. $R_3$ queda cortocircuitada, y el circuito resultante es un inversor con $Z_1 = R_2$ y $Z_2= R_6+\nicefrac{1}{s \, R_6 C_2}$. Por lo tanto:
+
+\begin{equation}
+	\frac{\tilde{v_{C}}}{\tilde{v_O}}(s) = - \frac{Z_2}{Z_1}
+	= -\frac{R_6}{R_2} \cdot \left(
+		\frac{s+\nicefrac{1}{R_6 C_2}}{s}
+	\right)
+\end{equation}
+
+
+\subsubsection{Amplificador de error como bloque de un sistema LTI}
+
+\subsubsection{Fuente de corriente $I_1$ y $R_7$}
+
+
+
+\subsection{Modulador PWM}
+\subsubsection{Caracter\'isticas de la se\~nal triangular}
+La se\~nal definida en la consigna no es una se\~nal perfectamente triangular, puesto que para eso deber\'ia cumplirse $T_{ON}=T_{OFF}=0$. La se\~nal comienza en $V_{INITIAL}=0\si\volt$, sube linealmente a $V_{ON}=19$V en $T_{RISE}=19\si{\micro\s}$, donde se mantiene constante por $T_{ON}=0.25\si{\micro\s}$, para luego bajar en $T_{FALL}=0.5\si{\micro\s}$ a 0V, donde permanece por los restantes 0.25$\si{\micro\s}$ para completar el per\'iodo de $T_{S}=20\si{\micro\s}$.
+
+ 
+\subsubsection{Duty cycle m\'aximo}
+
+\subsubsection{Modulador PWM como bloque de un sistema LTI}
+
+
+
+\subsection{Convertidor DC/DC}
+\subsection{Transferencia del convertidor}
+Se consideran ideales al diodo y al MOS.
+
+\subsubsection{Valor real del duty cycle}
+
+
+\subsubsection{Tiempo de establecimiento}
+
+
+\subsubsection{title}
 
 \end{document}
